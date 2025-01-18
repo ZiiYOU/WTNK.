@@ -15,8 +15,15 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
     password: ''
   });
 
+  const fetchData = async () => {
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  };
+
   useEffect(() => {
     setIsLogIn(isLogInProps);
+    fetchData();
   }, []);
 
   const signInOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
