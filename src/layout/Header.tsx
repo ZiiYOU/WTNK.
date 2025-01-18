@@ -5,6 +5,10 @@ import Logo from '../components/Logo';
 const Header = () => {
   const navigate = useNavigate();
 
+  const logoOnClickHandler = () => {
+    navigate('/');
+  };
+
   const logInButtonOnClickHandler = () => {
     navigate('/logIn');
   };
@@ -19,7 +23,7 @@ const Header = () => {
 
   return (
     <div className="inset-x-0 z-30 flex h-12 flex-none items-center justify-between gap-6 px-4 border-b border-gray-300/10 drop-shadow-xl !bg-transparent">
-      <Logo />
+      <Logo onClick={logoOnClickHandler} />
       <div className="flex items-center gap-2">
         <Button type="button" onClick={logInButtonOnClickHandler} size="header">
           로그인
