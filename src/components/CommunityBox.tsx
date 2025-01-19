@@ -1,15 +1,17 @@
 import PostBox from './PostBox';
 import { usePosts } from '../queries/usePostsQueries';
 import { useEffect, useState } from 'react';
-import { PostsType } from '../types/WTNK.types';
+import { AuthStoreType, PostsType } from '../types/WTNK.types';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../store/useAuthStore';
 
 interface CommunityBoxProps {
   isCommunityPage: boolean;
 }
 
 const CommunityBox = ({ isCommunityPage }: CommunityBoxProps) => {
+  const { hasToken }: Partial<AuthStoreType> = useAuthStore();
   const [posts, setPosts] = useState<PostsType[]>([]);
   const { data, isPending, isError } = usePosts();
   const navigate = useNavigate();
@@ -26,7 +28,12 @@ const CommunityBox = ({ isCommunityPage }: CommunityBoxProps) => {
   }
 
   const onClickHandler = () => {
-    navigate('/community');
+    if (hasToken) {
+      navigate('/community');
+      return;
+    }
+    alert('로그인 후 이용 가능합니다.');
+    navigate('/logIn');
   };
   return (
     <div className="w-full flex flex-col mt-[5%] px-16 space-y-8 ">

@@ -1,5 +1,5 @@
 const MyPage = () => {
-  return <div>MyPage</div>;
+  return <div className="flex justify-center mt-[5%] font-bold text-4xl">MyPage</div>;
 };
 
 export default MyPage;
