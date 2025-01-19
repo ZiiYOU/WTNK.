@@ -4,6 +4,7 @@ import Layout from '../layout/Layout';
 import LogIn from '../pages/LogIn';
 import SignIn from '../pages/SignIn';
 import MyPage from '../pages/MyPage';
+import Community from '../pages/Community';
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
           <Route path="/logIn" element={<LogIn />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/myPage" element={<MyPage />} />
+          <Route path="/community" element={<Community />} />
         </Route>
       </Routes>
     </BrowserRouter>

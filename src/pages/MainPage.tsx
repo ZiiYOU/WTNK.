@@ -1,5 +1,7 @@
+import CommunityBox from '../components/CommunityBox';
+
 const MainPage = () => {
-  return <div>Main</div>;
+  return <CommunityBox isCommunityPage={false} />;
 };
 
 export default MainPage;
