@@ -26,3 +26,38 @@
 - tailwind 를 이용한 스타일링
 - zustand를 통한 client-side 전역 state 관리
 - axios, tanstack-query를 통한 외부통신 및 server-side 전역 state 관리
+
+## 📁 폴더 구조
+
+```
+📦src
+ ┣ 📂api
+ ┃ ┣ 📜auth.api.ts
+ ┃ ┗ 📜post.api.ts
+ ┣ 📂assets
+ ┣ 📂components
+ ┃ ┣ 📜Button.tsx
+ ┃ ┣ 📜CommunityBox.tsx
+ ┃ ┣ 📜Input.tsx
+ ┃ ┣ 📜Loading.tsx
+ ┃ ┣ 📜LogInForm.tsx
+ ┃ ┣ 📜Logo.tsx
+ ┃ ┗ 📜PostBox.tsx
+ ┣ 📂layout
+ ┃ ┣ 📜Header.tsx
+ ┃ ┗ 📜Layout.tsx
+ ┣ 📂pages
+ ┃ ┣ 📜Community.tsx
+ ┃ ┣ 📜LogIn.tsx
+ ┃ ┣ 📜MainPage.tsx
+ ┃ ┣ 📜MyPage.tsx
+ ┃ ┗ 📜SignUp.tsx
+ ┣ 📂queries
+ ┃ ┗ 📜usePostsQueries.ts
+ ┣ 📂router
+ ┃ ┗ 📜Router.tsx
+ ┣ 📂store
+ ┃ ┗ 📜useAuthStore.tsx
+ ┗ 📂types
+   ┗ 📜WTNK.types.ts
+```
