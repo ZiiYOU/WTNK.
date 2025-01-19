@@ -22,7 +22,7 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
 
   useEffect(() => {
     setIsLogIn(isLogInProps);
-  }, []);
+  }, [isLogInProps]);
 
   const buttonOnClickHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     navigate('/signIn');
@@ -88,9 +88,26 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
       <div className="font-bold text-4xl">{isLogIn ? 'LogIn' : 'Sign In'}</div>
       <form onSubmit={logInSubmitHandler} className="w-96 flex flex-col gap-12">
         <div className="w-96 flex flex-col gap-4">
-          {!isLogIn && <Input placeholder="이름을 입력해주세요." name="nickname" onChange={signInOnChangeHandler} />}
-          <Input placeholder="아이디를 입력해주세요." name="id" onChange={signInOnChangeHandler} />
-          <Input placeholder="비밀번호를 입력해주세요." name="password" onChange={signInOnChangeHandler} />
+          {!isLogIn && (
+            <Input
+              placeholder="이름을 입력해주세요."
+              name="nickname"
+              onChange={signInOnChangeHandler}
+              value={logInValue.nickname}
+            />
+          )}
+          <Input
+            placeholder="아이디를 입력해주세요."
+            name="id"
+            onChange={signInOnChangeHandler}
+            value={logInValue.id}
+          />
+          <Input
+            placeholder="비밀번호를 입력해주세요."
+            name="password"
+            onChange={signInOnChangeHandler}
+            value={logInValue.password}
+          />
         </div>
         <div className="w-96 flex flex-col gap-4">
           <Button type="submit" size="default">
