@@ -28,6 +28,27 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
     navigate('/signIn');
   };
 
+  const logInHandler = async () => {
+    await logIn(logInValue);
+    signInFn();
+    navigate('/');
+  };
+
+  const signUpHandler = async () => {
+    await signUp(logInValue);
+    navigate('/logIn');
+  };
+
+  // 유효성 검사
+  const validateInput = (): string | null => {
+    if (!logInValue.id.trim().length) return '아이디를 입력해주세요.';
+    if (!logInValue.password.trim().length) return '비밀번호를 입력해주세요.';
+    if (!isLogIn && !logInValue.nickname.trim().length) return '이름을 입력해주세요.';
+    if (logInValue.id.length < 4 || logInValue.id.length > 15) return '아이디는 4~15 글자로 입력하세요.';
+    if (logInValue.password.length < 4 || logInValue.password.length > 15) return '비밀번호는 4~15 글자로 입력하세요.';
+    return null;
+  };
+
   const signInOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -38,46 +59,21 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
   const logInSubmitHandler: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
-    // 유효성 검사
-    if (!logInValue.id.trim().length) {
-      alert('아이디를 입력해주세요.');
-      return;
-    }
-
-    if (!logInValue.password.trim().length) {
-      alert('비밀번호를 입력해주세요.');
-      return;
-    }
-
-    if (!isLogIn && !logInValue.nickname.trim().length) {
-      alert('이름을 입력해주세요.');
-      return;
-    }
-
-    // 아이디 유효성 검사
-    if (logInValue.id.length < 4 || logInValue.id.length > 15) {
-      alert('아이디는 4~15 글자로 입력하세요.');
-      return;
-    }
-
-    // 비밀번호 유효성 검사
-    if (logInValue.password.length < 4 || logInValue.password.length > 15) {
-      alert('비밀번호는 4~15 글자로 입력하세요.');
+    const validationError = validateInput();
+    if (validationError) {
+      alert(validationError);
       return;
     }
 
     try {
       // 로그인
       if (isLogIn) {
-        await logIn(logInValue);
-        signInFn();
-        navigate('/');
+        await logInHandler();
       }
 
       // 회원가입
       if (!isLogIn) {
-        await signUp(logInValue);
-        navigate('/logIn');
+        await signUpHandler();
       }
 
       setLogInValue({ nickname: '', password: '', id: '' });
