@@ -8,43 +8,31 @@ const Header = () => {
   const { hasToken, signOutFn }: Partial<AuthStoreType> = useAuthStore();
   const navigate = useNavigate();
 
-  const logoOnClickHandler = () => {
-    navigate('/');
+  const onClickNavigateHandler = (url: string) => {
+    navigate(url);
   };
 
-  const logInButtonOnClickHandler = () => {
-    navigate('/logIn');
-  };
-
-  const signInButtonOnClickHandler = () => {
-    navigate('/signIn');
-  };
-
-  const myPageButtonOnClickHandler = () => {
-    navigate('/myPage');
-  };
-
-  const signOutButtonOnClickHandler = () => {
+  const signOutHandler = () => {
     signOutFn();
     navigate('/logIn');
   };
 
   return (
     <div className="inset-x-0 z-30 flex h-12 flex-none items-center justify-between gap-6 px-4 border-b border-gray-300/10 drop-shadow-xl !bg-transparent">
-      <Logo onClick={logoOnClickHandler} />
+      <Logo onClick={() => onClickNavigateHandler('/')} />
       <div className={`flex items-center gap-2 ${hasToken ? 'hidden' : 'block'}`}>
-        <Button type="button" onClick={logInButtonOnClickHandler} size="header">
+        <Button type="button" onClick={() => onClickNavigateHandler('/logIn')} size="header">
           로그인
         </Button>
-        <Button type="button" onClick={signInButtonOnClickHandler} size="header">
+        <Button type="button" onClick={() => onClickNavigateHandler('/signUp')} size="header">
           회원가입
         </Button>
       </div>
       <div className={`flex items-center gap-2 ${hasToken ? 'block' : 'hidden'}`}>
-        <Button type="button" onClick={myPageButtonOnClickHandler} size="header">
+        <Button type="button" onClick={() => onClickNavigateHandler('/myPage')} size="header">
           마이페이지
         </Button>
-        <Button type="button" size="header" onClick={signOutButtonOnClickHandler}>
+        <Button type="button" size="header" onClick={signOutHandler}>
           로그아웃
         </Button>
       </div>
