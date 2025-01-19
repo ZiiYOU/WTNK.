@@ -2,7 +2,7 @@
 
 프론트엔드 온보딩 과제로 진행한 프로젝트 입니다.
 
-배포 URL : [WTNK 바로가기](wtnk.vercel.app)
+배포 URL : [WTNK 바로가기](https://wtnk-git-main-jiyoungs-projects-d3377a8b.vercel.app/)
 
 ## 👩🏻‍💻 개발자 소개
 
