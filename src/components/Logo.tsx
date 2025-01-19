@@ -3,7 +3,7 @@ interface LogoProps {
 }
 const Logo = ({ onClick }: LogoProps) => {
   return (
-    <div onClick={onClick} className="text-theme font-bold text-xl">
+    <div onClick={onClick} className="cursor-pointer text-theme font-bold text-xl">
       WTNK.
     </div>
   );
