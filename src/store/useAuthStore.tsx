@@ -2,8 +2,9 @@ import { create } from 'zustand';
 import { AuthStoreType } from '../types/WTNK.types';
 
 export const useAuthStore = create<AuthStoreType>(function (set) {
+  const tokenExists = !!localStorage.getItem('accessToken');
   return {
-    hasToken: false,
+    hasToken: tokenExists,
     signInFn: function () {
       set({
         hasToken: true
