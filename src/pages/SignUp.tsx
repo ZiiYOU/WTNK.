@@ -1,7 +1,7 @@
 import LogInForm from '../components/LogInForm';
 
-const SignIn = () => {
+const SignUp = () => {
   return <LogInForm isLogInProps={false} />;
 };
 
-export default SignIn;
+export default SignUp;

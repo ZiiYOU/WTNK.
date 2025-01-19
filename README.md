@@ -1,50 +1,28 @@
-# React + TypeScript + Vite
+# WTNK. : Workout Together Network Korea.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+프론트엔드 온보딩 과제로 진행한 프로젝트 입니다.
 
-Currently, two official plugins are available:
+배포 URL : [WTNK 바로가기](wtnk.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 👩🏻‍💻 개발자 소개
 
-## Expanding the ESLint configuration
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/ziiYOU/"><img src="https://avatars.githubusercontent.com/u/112477905?v=4" width="100px;" alt=""/><br /><sub><b> 방지영 </b></sub></a><br /></td>
+    </tr>
+  </tbody>
+</table>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## ⚙️ 기술 스택
 
-- Configure the top-level `parserOptions` property like this:
+<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white"><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"><img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"><img src="https://img.shields.io/badge/reactquery-<RGB색상>?style=for-the-badge&logo=reactquery&FF4154logoColor=white">
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 📌 주요 기능
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- JWT 인증 서버를 활용한 로그인 및 회원가입 구현
+- JSON Placeholder api 를 활용한 게시글 viewer 구현
+- JWT 토큰을 이용한 인증/인가 구현 및 리다이렉트 처리
+- tailwind 를 이용한 스타일링
+- zustand를 통한 client-side 전역 state 관리
+- axios, tanstack-query를 통한 외부통신 및 server-side 전역 state 관리
