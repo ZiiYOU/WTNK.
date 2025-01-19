@@ -5,6 +5,7 @@ import { AuthStoreType, PostsType } from '../types/WTNK.types';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
+import { Loading } from './Loading';
 
 interface CommunityBoxProps {
   isCommunityPage: boolean;
@@ -21,7 +22,7 @@ const CommunityBox = ({ isCommunityPage }: CommunityBoxProps) => {
   }, [data]);
 
   if (isPending) {
-    return <div>로딩중..</div>;
+    return <Loading />;
   }
   if (isError) {
     return <div>에러가 발생했습니다.</div>;
