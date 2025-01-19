@@ -25,7 +25,7 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
   }, [isLogInProps]);
 
   const buttonOnClickHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
-    navigate('/signIn');
+    navigate('/signUp');
   };
 
   const logInHandler = async () => {
