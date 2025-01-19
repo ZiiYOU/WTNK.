@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import Button from './Button';
 import Input from './Input';
-import { LogInFormType } from '../types/WTNK.types';
+import { AuthStoreType, LogInFormType } from '../types/WTNK.types';
 import { useNavigate } from 'react-router-dom';
+import { logIn, signUp } from '../api/auth.api';
+import { useAuthStore } from '../store/useAuthStore';
 
 interface LogInFormProps {
   isLogInProps: boolean;
@@ -12,14 +14,19 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
   const navigate = useNavigate();
   const [isLogIn, setIsLogIn] = useState<boolean>(true);
   const [logInValue, setLogInValue] = useState<LogInFormType>({
-    username: '',
-    email: '',
+    nickname: '',
+    id: '',
     password: ''
   });
+  const { signInFn }: Partial<AuthStoreType> = useAuthStore();
 
   useEffect(() => {
     setIsLogIn(isLogInProps);
   }, []);
+
+  const buttonOnClickHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
+    navigate('/signIn');
+  };
 
   const signInOnChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -27,17 +34,13 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
     setLogInValue((prev) => ({ ...prev, [name]: value }));
   };
 
-  const buttonOnClickHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
-    navigate('/signIn');
-  };
-
+  // submit 요청 함수
   const logInSubmitHandler: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
     // 유효성 검사
-    if (!logInValue.email.trim().length) {
-      console.log(logInValue);
-      alert('이메일을 입력해주세요.');
+    if (!logInValue.id.trim().length) {
+      alert('아이디를 입력해주세요.');
       return;
     }
 
@@ -46,14 +49,14 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
       return;
     }
 
-    if (!isLogIn && !logInValue.username.trim().length) {
+    if (!isLogIn && !logInValue.nickname.trim().length) {
       alert('이름을 입력해주세요.');
       return;
     }
 
     // 아이디 유효성 검사
-    if (logInValue.email.length < 4 || logInValue.email.length > 15) {
-      alert('이메일은 4~15 글자로 입력하세요.');
+    if (logInValue.id.length < 4 || logInValue.id.length > 15) {
+      alert('아이디는 4~15 글자로 입력하세요.');
       return;
     }
 
@@ -62,7 +65,26 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
       alert('비밀번호는 4~15 글자로 입력하세요.');
       return;
     }
-    console.log(logInValue);
+
+    try {
+      // 로그인
+      if (isLogIn) {
+        await logIn(logInValue);
+        signInFn();
+        navigate('/');
+      }
+
+      // 회원가입
+      if (!isLogIn) {
+        await signUp(logInValue);
+        navigate('/logIn');
+      }
+
+      setLogInValue({ nickname: '', password: '', id: '' });
+    } catch (error) {
+      alert('로그인 혹은 회원가입 도중 문제가 발생했습니다.');
+      throw new Error('로그인 / 회원가입 실패');
+    }
   };
 
   return (
@@ -70,8 +92,8 @@ const LogInForm = ({ isLogInProps }: LogInFormProps) => {
       <div className="font-bold text-4xl">{isLogIn ? 'LogIn' : 'Sign In'}</div>
       <form onSubmit={logInSubmitHandler} className="w-96 flex flex-col gap-12">
         <div className="w-96 flex flex-col gap-4">
-          {!isLogIn && <Input placeholder="이름을 입력해주세요." name="username" onChange={signInOnChangeHandler} />}
-          <Input placeholder="아이디를 입력해주세요." name="email" onChange={signInOnChangeHandler} />
+          {!isLogIn && <Input placeholder="이름을 입력해주세요." name="nickname" onChange={signInOnChangeHandler} />}
+          <Input placeholder="아이디를 입력해주세요." name="id" onChange={signInOnChangeHandler} />
           <Input placeholder="비밀번호를 입력해주세요." name="password" onChange={signInOnChangeHandler} />
         </div>
         <div className="w-96 flex flex-col gap-4">
